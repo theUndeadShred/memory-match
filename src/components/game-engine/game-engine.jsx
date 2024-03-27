@@ -57,6 +57,10 @@ const StyledGameWin = styled.div`
       transform: scale(1);
     }
   }
+
+  @media (max-width: 1024px) {
+    font-size: 2em;
+  }
 `;
 
 const GameEngine = ({ user, gameState }) => {
@@ -139,7 +143,7 @@ const GameEngine = ({ user, gameState }) => {
     <>
       {matched.length === shuffledArray.length / 2 && (
         <StyledGameWin>
-          <h1>You Win, {user.name} !</h1>
+          <h1>You Win, {user.name}!</h1>
           <StyledButton onClick={handleReset}>Play again</StyledButton>
         </StyledGameWin>
       )}
