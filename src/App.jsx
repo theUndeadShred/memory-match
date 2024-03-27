@@ -1,8 +1,8 @@
-import { useState, useEffect, useMemo } from "react";
-import styled from "styled-components";
-import "./App.css";
+import { useState, useEffect, useMemo } from 'react';
+import styled from 'styled-components';
+import './App.css';
 
-import GameEngine from "./components/game-engine/game-engine";
+import GameEngine from './components/game-engine/game-engine';
 
 const StyledStartScreen = styled.section`
   display: flex;
@@ -48,7 +48,7 @@ const StyledSelect = styled.select`
 const StyledHeading = styled.h1``;
 
 const StartScreen = ({ setGameState, setUser, setShouldStartGame }) => {
-  const [localUser, setLocalUser] = useState("");
+  const [localUser, setLocalUser] = useState('');
   const [theme, setTheme] = useState(null);
 
   const handleThemeSelect = (e) => {
@@ -66,20 +66,19 @@ const StartScreen = ({ setGameState, setUser, setShouldStartGame }) => {
     <StyledStartScreen>
       <h1>Memory Matcher</h1>
       <StyledInput
-        type="text"
-        placeholder="Enter your name"
+        type='text'
+        placeholder='Enter your name'
         onChange={handleSetUser}
         value={localUser}
       />
       <StyledSelect
-        type="select"
-        placeholder="Select a theme"
+        type='select'
+        placeholder='Select a theme'
         onChange={handleThemeSelect}
       >
-        <option value="">Select a theme</option>
-        <option value="mario">Mario</option>
-        <option value="nintendo">Nintendo</option>
-        <option value="zelda">Zelda</option>
+        <option value=''>Select a theme</option>
+        <option value='mario'>Mario</option>
+        <option value='zelda'>Zelda</option>
       </StyledSelect>
       <StyledButton
         disabled={!localUser || !theme}

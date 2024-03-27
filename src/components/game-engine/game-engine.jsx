@@ -1,15 +1,24 @@
-import { useState, useEffect, useMemo } from "react";
-import { shape, string } from "prop-types";
-import styled from "styled-components";
+import { useState, useEffect, useMemo } from 'react';
+import { shape, string } from 'prop-types';
+import styled from 'styled-components';
 
-import Card from "../card";
-import * as Themes from "./game-themes";
+import Card from '../card';
+import * as Themes from './game-themes';
 
 const StyledGrid = styled.section`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  grid-auto-flow: row;
+  grid-auto-columns: 100px;
   gap: 1em;
   padding: 1em;
+
+  @media (orientation: portrait) {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-flow: row;
+    grid-auto-rows: 190px;
+    grid-auto-columns: 100px;
+  }
 `;
 
 const StyledButton = styled.button`
@@ -134,7 +143,7 @@ const GameEngine = ({ user, gameState }) => {
           <StyledButton onClick={handleReset}>Play again</StyledButton>
         </StyledGameWin>
       )}
-      <StyledGrid className="card-grid">{renderCardGrid()}</StyledGrid>
+      <StyledGrid className='card-grid'>{renderCardGrid()}</StyledGrid>
     </>
   );
 };

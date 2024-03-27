@@ -30,3 +30,36 @@ export const mario = [
     img: '/nintendo/wiggler.webp',
   },
 ];
+
+export const zelda = [
+  {
+    id: 1,
+    name: 'Link',
+    img: '/nintendo/link.png',
+  },
+  {
+    id: 2,
+    name: 'Zelda',
+    img: '/nintendo/zelda.png',
+  },
+  {
+    id: 3,
+    name: 'Ganondorf',
+    img: '/nintendo/ganondorf.png',
+  },
+  {
+    id: 4,
+    name: 'Korok',
+    img: '/nintendo/korok.jpg',
+  },
+  {
+    id: 5,
+    name: 'Guardian',
+    img: '/nintendo/guardian.png',
+  },
+  {
+    id: 6,
+    name: 'chuchu',
+    img: '/nintendo/chuchu.png',
+  },
+];
