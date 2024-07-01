@@ -63,3 +63,36 @@ export const zelda = [
     img: '/nintendo/chuchu.png',
   },
 ];
+
+export const disney = [
+  {
+    id: 1,
+    name: 'Mickey',
+    img: '/disney/mickey.jpg',
+  },
+  {
+    id: 2,
+    name: 'Minnie',
+    img: '/disney/minnie.jpg',
+  },
+  {
+    id: 3,
+    name: 'Goofy',
+    img: '/disney/goofy.webp',
+  },
+  {
+    id: 4,
+    name: 'Donald',
+    img: '/disney/donald.png',
+  },
+  {
+    id: 5,
+    name: 'Daisy',
+    img: '/disney/daisy.jpg',
+  },
+  {
+    id: 6,
+    name: 'Pluto',
+    img: '/disney/pluto.png',
+  },
+];

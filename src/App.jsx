@@ -79,6 +79,7 @@ const StartScreen = ({ setGameState, setUser, setShouldStartGame }) => {
         <option value=''>Select a theme</option>
         <option value='mario'>Mario</option>
         <option value='zelda'>Zelda</option>
+        <option value='disney'>Disney</option>
       </StyledSelect>
       <StyledButton
         disabled={!localUser || !theme}
