@@ -29,8 +29,8 @@
 }
 
 .card-matched-overlay {
-  width: 120px;
-  height: 190px;
+  width: 20vw;
+  height: 30vh;
   border-radius: 0.25em;
   display: flex;
   justify-content: center;
@@ -44,6 +44,16 @@
     font-weight: bold;
     transform: scale(0);
     transition: transform 1000ms;
+  }
+
+  @media (orientation: portrait) {
+    width: 20vw;
+    height: 22vh;
+  }
+
+  @media (max-width: 500px) {
+    width: 25vw;
+    height: 22vh;
   }
 }
 
@@ -79,8 +89,8 @@
 
 .card-back,
 .card-front {
-  width: 120px;
-  height: 190px;
+  width: 20vw;
+  height: 30vh;
   background-color: #f0f0f0;
   border-radius: 0.25em;
   display: flex;
@@ -105,9 +115,14 @@
     font-size: 0.5em;
   }
 
-  @media (max-width: 1024px) {
-    width: 120px;
-    height: 190px;
+  @media (orientation: portrait) {
+    width: 20vw;
+    height: 22vh;
+  }
+
+  @media (max-width: 500px) {
+    width: 25vw;
+    height: 22vh;
   }
 }
 

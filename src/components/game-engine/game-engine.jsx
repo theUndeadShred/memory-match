@@ -16,8 +16,13 @@ const StyledGrid = styled.section`
   @media (orientation: portrait) {
     grid-template-columns: repeat(3, 1fr);
     grid-auto-flow: row;
-    grid-auto-rows: 190px;
-    grid-auto-columns: 100px;
+    grid-auto-rows: auto;
+    grid-auto-columns: auto;
+  }
+
+  @media (max-width: 500px) {
+    gap: 0.25em;
+    padding: 0.25em;
   }
 `;
 
