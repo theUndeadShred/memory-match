@@ -3,59 +3,23 @@ import styled from 'styled-components';
 import './App.css';
 
 import GameEngine from './components/game-engine/game-engine';
-
-const StyledStartScreen = styled.section`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  gap: 1em;
-`;
-
-const StyledButton = styled.button`
-  padding: 0.5em 1em;
-  font-size: 2em;
-  font-weight: bold;
-  border: none;
-  border-radius: 0.25em;
-  background-color: #f0f0f0;
-  color: #646cff;
-  cursor: pointer;
-`;
-
-const StyledInput = styled.input`
-  padding: 0.5em 1em;
-  font-size: 2em;
-  font-weight: bold;
-  border: none;
-  border-radius: 0.25em;
-  background-color: #f0f0f0;
-  color: #646cff;
-`;
-
-const StyledSelect = styled.select`
-  padding: 0.5em 1em;
-  font-size: 2em;
-  font-weight: bold;
-  border: none;
-  border-radius: 0.25em;
-  background-color: #f0f0f0;
-  color: #646cff;
-  cursor: pointer;
-`;
+import ThemeSelect from './components/theme-select/ThemeSelect';
+import {
+  StyledStartScreen,
+  StyledButton,
+  StyledInput,
+} from './styles/layout-styles';
 
 const StyledHeading = styled.h1``;
 
-const StartScreen = ({ setGameState, setUser, setShouldStartGame }) => {
+const StartScreen = ({
+  setGameState,
+  setUser,
+  setShouldStartGame,
+  handleThemeSelect,
+  theme,
+}) => {
   const [localUser, setLocalUser] = useState('');
-  const [theme, setTheme] = useState(null);
-
-  const handleThemeSelect = (e) => {
-    console.log(e);
-    setGameState(e.target.value);
-    setTheme(e.target.value);
-  };
 
   const handleSetUser = (e) => {
     setUser(e.target.value);
@@ -71,16 +35,7 @@ const StartScreen = ({ setGameState, setUser, setShouldStartGame }) => {
         onChange={handleSetUser}
         value={localUser}
       />
-      <StyledSelect
-        type='select'
-        placeholder='Select a theme'
-        onChange={handleThemeSelect}
-      >
-        <option value=''>Select a theme</option>
-        <option value='mario'>Mario</option>
-        <option value='zelda'>Zelda</option>
-        <option value='disney'>Disney</option>
-      </StyledSelect>
+      <ThemeSelect onChange={handleThemeSelect} />
       <StyledButton
         disabled={!localUser || !theme}
         onClick={() => setShouldStartGame(true)}
@@ -94,15 +49,27 @@ const StartScreen = ({ setGameState, setUser, setShouldStartGame }) => {
 function App() {
   const [user, setUser] = useState(null);
   const [gameState, setGameState] = useState(null);
+  const [theme, setTheme] = useState(null);
   const [shouldStartGame, setShouldStartGame] = useState(false);
 
+  const handleThemeSelect = (e) => {
+    setGameState(e.target.value);
+    setTheme(e.target.value);
+  };
+
   return shouldStartGame ? (
-    <GameEngine user={{ name: user }} gameState={{ theme: gameState }} />
+    <GameEngine
+      user={{ name: user }}
+      gameState={{ theme: gameState }}
+      handleThemeSelect={handleThemeSelect}
+    />
   ) : (
     <StartScreen
       setUser={setUser}
       setGameState={setGameState}
       setShouldStartGame={setShouldStartGame}
+      handleThemeSelect={handleThemeSelect}
+      theme={theme}
     />
   );
 }
