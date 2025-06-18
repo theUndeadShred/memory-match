@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 import Card from '../card';
 import * as Themes from './game-themes';
-import { StyledSelect } from '../../styles/layout-styles';
 import ThemeSelect from '../theme-select/ThemeSelect';
 
 const StyledGrid = styled.section`
@@ -151,7 +150,7 @@ const GameEngine = ({ user, gameState, handleThemeSelect }) => {
       {matched.length === shuffledArray.length / 2 && (
         <StyledGameWin>
           <h1>You Win, {user.name}!</h1>
-          <ThemeSelect onChange={handleThemeSelect} />
+          <ThemeSelect onChange={handleThemeSelect} isSmall />
           <StyledButton onClick={handleReset}>Play again</StyledButton>
         </StyledGameWin>
       )}

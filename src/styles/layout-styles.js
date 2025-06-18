@@ -32,7 +32,7 @@ const StyledInput = styled.input`
 
 const StyledSelect = styled.select`
   padding: 0.5em 1em;
-  font-size: 2em;
+  font-size: ${(props) => (props.isSmall ? '1em' : '2em')};
   font-weight: bold;
   border: none;
   border-radius: 0.25em;

@@ -96,3 +96,69 @@ export const disney = [
     img: '/disney/pluto.png',
   },
 ];
+
+export const frogs = [
+  {
+    id: 1,
+    name: 'frog1',
+    img: '/frogs/frog1.png',
+  },
+  {
+    id: 2,
+    name: 'frog2',
+    img: '/frogs/frog2.png',
+  },
+  {
+    id: 3,
+    name: 'frog3',
+    img: '/frogs/frog3.png',
+  },
+  {
+    id: 4,
+    name: 'frog4',
+    img: '/frogs/frog4.webp',
+  },
+  {
+    id: 5,
+    name: 'frog5',
+    img: '/frogs/frog5.png',
+  },
+  {
+    id: 6,
+    name: 'frog6',
+    img: '/frogs/frog6.png',
+  },
+];
+
+export const mouse = [
+  {
+    id: 1,
+    name: 'mouse1',
+    img: '/mouse/mouse1.png',
+  },
+  {
+    id: 2,
+    name: 'mouse2',
+    img: '/mouse/mouse2.png',
+  },
+  {
+    id: 3,
+    name: 'mouse3',
+    img: '/mouse/mouse3.png',
+  },
+  {
+    id: 4,
+    name: 'mouse4',
+    img: '/mouse/mouse4.png',
+  },
+  {
+    id: 5,
+    name: 'mouse5',
+    img: '/mouse/mouse5.png',
+  },
+  {
+    id: 6,
+    name: 'mouse6',
+    img: '/mouse/mouse6.png',
+  },
+];
