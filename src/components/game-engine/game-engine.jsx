@@ -1,10 +1,10 @@
-import { useState, useEffect, useMemo } from 'react';
-import { shape, string } from 'prop-types';
+import React, { useContext, useEffect, useState, useMemo } from 'react';
 import styled from 'styled-components';
 
 import Card from '../card';
-import * as Themes from './game-themes';
 import ThemeSelect from '../theme-select/ThemeSelect';
+import * as Themes from './game-themes';
+import { UserContext, GameStateContext } from '../../contexts';
 
 const StyledGrid = styled.section`
   display: grid;
@@ -69,7 +69,10 @@ const StyledGameWin = styled.div`
   }
 `;
 
-const GameEngine = ({ user, gameState, handleThemeSelect }) => {
+const GameEngine = () => {
+  const { user } = useContext(UserContext);
+  const { gameState, setGameState } = useContext(GameStateContext);
+
   const [flipped, setFlipped] = useState([]);
   const [matched, setMatched] = useState([]);
   const [toggleReset, setToggleReset] = useState(false);
@@ -149,23 +152,14 @@ const GameEngine = ({ user, gameState, handleThemeSelect }) => {
     <>
       {matched.length === shuffledArray.length / 2 && (
         <StyledGameWin>
-          <h1>You Win, {user.name}!</h1>
-          <ThemeSelect onChange={handleThemeSelect} isSmall />
+          <h1>You Win, {user}!</h1>
+          <ThemeSelect onChange={(e) => setGameState(e.target.value)} isSmall />
           <StyledButton onClick={handleReset}>Play again</StyledButton>
         </StyledGameWin>
       )}
       <StyledGrid className='card-grid'>{renderCardGrid()}</StyledGrid>
     </>
   );
-};
-
-GameEngine.propTypes = {
-  user: shape({
-    name: string,
-  }),
-  gameState: shape({
-    theme: string,
-  }),
 };
 
 export default GameEngine;

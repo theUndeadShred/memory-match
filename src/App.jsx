@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import './App.css';
 
@@ -9,17 +9,18 @@ import {
   StyledButton,
   StyledInput,
 } from './styles/layout-styles';
+import {
+  UserProvider,
+  UserContext,
+  GameStateProvider,
+  GameStateContext,
+} from './contexts';
 
-const StyledHeading = styled.h1``;
-
-const StartScreen = ({
-  setGameState,
-  setUser,
-  setShouldStartGame,
-  handleThemeSelect,
-  theme,
-}) => {
+const StartScreen = ({ setShouldStartGame }) => {
   const [localUser, setLocalUser] = useState('');
+
+  const { gameState, setGameState } = useContext(GameStateContext);
+  const { setUser } = useContext(UserContext);
 
   const handleSetUser = (e) => {
     setUser(e.target.value);
@@ -35,9 +36,9 @@ const StartScreen = ({
         onChange={handleSetUser}
         value={localUser}
       />
-      <ThemeSelect onChange={handleThemeSelect} />
+      <ThemeSelect onChange={(e) => setGameState(e.target.value)} />
       <StyledButton
-        disabled={!localUser || !theme}
+        disabled={!localUser || !gameState}
         onClick={() => setShouldStartGame(true)}
       >
         Start Game
@@ -47,30 +48,18 @@ const StartScreen = ({
 };
 
 function App() {
-  const [user, setUser] = useState(null);
-  const [gameState, setGameState] = useState(null);
-  const [theme, setTheme] = useState(null);
   const [shouldStartGame, setShouldStartGame] = useState(false);
 
-  const handleThemeSelect = (e) => {
-    setGameState(e.target.value);
-    setTheme(e.target.value);
-  };
-
-  return shouldStartGame ? (
-    <GameEngine
-      user={{ name: user }}
-      gameState={{ theme: gameState }}
-      handleThemeSelect={handleThemeSelect}
-    />
-  ) : (
-    <StartScreen
-      setUser={setUser}
-      setGameState={setGameState}
-      setShouldStartGame={setShouldStartGame}
-      handleThemeSelect={handleThemeSelect}
-      theme={theme}
-    />
+  return (
+    <UserProvider>
+      <GameStateProvider>
+        {shouldStartGame ? (
+          <GameEngine />
+        ) : (
+          <StartScreen setShouldStartGame={setShouldStartGame} />
+        )}
+      </GameStateProvider>
+    </UserProvider>
   );
 }
 
