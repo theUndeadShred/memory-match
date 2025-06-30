@@ -57,6 +57,7 @@ const StyledGameWin = styled.div`
   color: #f0f0f0;
   box-shadow: 0 0 1em #f0f0f0;
   animation: scaleUp 300ms forwards;
+  z-index: 2;
 
   @keyframes scaleUp {
     to {
