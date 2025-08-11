@@ -1,4 +1,5 @@
-import React, { createContext, useState } from 'react';
+import { createContext, useState } from 'react';
+import { node } from 'prop-types';
 
 // User Context
 export const UserContext = createContext();
@@ -13,15 +14,26 @@ export const UserProvider = ({ children }) => {
   );
 };
 
+UserProvider.propTypes = {
+  children: node,
+};
+
 // Game State Context
 export const GameStateContext = createContext();
 
 export const GameStateProvider = ({ children }) => {
-  const [gameState, setGameState] = useState(null);
+  const [gameState, setGameState] = useState({
+    gameMode: 'characters',
+    theme: 'mario',
+  });
 
   return (
     <GameStateContext.Provider value={{ gameState, setGameState }}>
       {children}
     </GameStateContext.Provider>
   );
+};
+
+GameStateProvider.propTypes = {
+  children: node,
 };
