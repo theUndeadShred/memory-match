@@ -10,6 +10,7 @@ const Card = ({
   imgSrc,
   setFlipped,
   active,
+  gameMode,
 }) => {
   const handleClick = () => {
     if (active || matched.includes(cardId)) return; // card is already flipped or matched
@@ -20,6 +21,13 @@ const Card = ({
   };
 
   const renderCardFront = () => {
+    if (gameMode === 'math') {
+      return (
+        <div className='card-front'>
+          <h3 className='character-name'>{name}</h3>
+        </div>
+      );
+    }
     return (
       <div className='card-front'>
         <ImageWebp className='character-img' src={imgSrc} alt={name} />
@@ -57,6 +65,7 @@ Card.propTypes = {
   cardId: number,
   cardKey: number,
   active: bool,
+  gameMode: string,
 };
 
 export default Card;

@@ -1,5 +1,5 @@
-import React, { useState, useContext } from 'react';
-import styled from 'styled-components';
+import { useState, useContext } from 'react';
+import { func } from 'prop-types';
 import './App.css';
 
 import GameEngine from './components/game-engine/game-engine';
@@ -36,15 +36,25 @@ const StartScreen = ({ setShouldStartGame }) => {
         onChange={handleSetUser}
         value={localUser}
       />
-      <ThemeSelect onChange={(e) => setGameState(e.target.value)} />
+      <ThemeSelect
+        onChange={(e) => {
+          setGameState({ ...gameState, theme: e.target.value });
+        }}
+      />
       <StyledButton
-        disabled={!localUser || !gameState}
+        disabled={
+          !localUser || (!gameState.theme && gameState.gameMode !== 'math')
+        }
         onClick={() => setShouldStartGame(true)}
       >
         Start Game
       </StyledButton>
     </StyledStartScreen>
   );
+};
+
+StartScreen.propTypes = {
+  setShouldStartGame: func,
 };
 
 function App() {
