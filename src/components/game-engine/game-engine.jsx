@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, useMemo } from 'react';
+import { useContext, useEffect, useState, useMemo } from 'react';
 import styled from 'styled-components';
 
 import Card from '../card';
@@ -72,7 +72,7 @@ const StyledGameWin = styled.div`
 
 const GameEngine = () => {
   const { user } = useContext(UserContext);
-  const { gameState, setGameState } = useContext(GameStateContext);
+  const { gameState } = useContext(GameStateContext);
 
   const [flipped, setFlipped] = useState([]);
   const [matched, setMatched] = useState([]);
@@ -95,15 +95,25 @@ const GameEngine = () => {
         }, 1000);
       }
     }
-  }, [flipped]);
+  }, [flipped, matched]);
 
   const shuffledArray = useMemo(() => {
-    const characterArray = Themes[gameState.theme];
-    // duplicate the elements in the characterArray, then
-    // shuffle the array using the Fisher-Yates algorithm
-    const duplicatedArray = characterArray.concat(characterArray);
-    return duplicatedArray.sort(() => Math.random() - 0.5);
-  }, [toggleReset]);
+    let cardData;
+    if (gameState.gameMode === 'math') {
+      cardData = Themes.generateMathProblems();
+    } else {
+      cardData = Themes[gameState.theme];
+    }
+
+    if (gameState.gameMode === 'math') {
+      return cardData.sort(() => Math.random() - 0.5);
+    } else {
+      // duplicate the elements in the cardData, then
+      // shuffle the array using the Fisher-Yates algorithm
+      const duplicatedArray = cardData.concat(cardData);
+      return duplicatedArray.sort(() => Math.random() - 0.5);
+    }
+  }, [toggleReset, gameState.theme, gameState.gameMode]);
 
   const handleFlipped = (flippedCard) => {
     setFlipped([...flipped, { id: flippedCard.id, key: flippedCard.key }]);
@@ -129,21 +139,22 @@ const GameEngine = () => {
     }
   };
 
-  // renders the card grid with the characterArray
+  // renders the card grid with the cardData
   // by randomly generating a card for each character
   const renderCardGrid = () => {
-    return shuffledArray.map((character, index) => {
+    return shuffledArray.map((card, index) => {
       return (
         <Card
           matched={matched}
           key={index}
           cardKey={index}
-          cardId={character.id}
-          name={character.name}
-          imgSrc={character.img}
+          cardId={card.id}
+          name={card.name}
+          imgSrc={card.img}
           flipped={flipped}
           setFlipped={handleFlipped}
-          active={computeActiveState(character.id, index)}
+          active={computeActiveState(card.id, index)}
+          gameMode={gameState.gameMode}
         />
       );
     });
@@ -154,7 +165,7 @@ const GameEngine = () => {
       {matched.length === shuffledArray.length / 2 && (
         <StyledGameWin>
           <h1>You Win, {user}!</h1>
-          <ThemeSelect onChange={(e) => setGameState(e.target.value)} isSmall />
+          <ThemeSelect isSmall />
           <StyledButton onClick={handleReset}>Play again</StyledButton>
         </StyledGameWin>
       )}

@@ -1,4 +1,4 @@
-import { array, bool, func, number, string } from 'prop-types';
+import { array, bool, func, number, string, oneOfType } from 'prop-types';
 import ImageWebp from '../image-webp';
 
 const Card = ({
@@ -10,6 +10,7 @@ const Card = ({
   imgSrc,
   setFlipped,
   active,
+  gameMode,
 }) => {
   const handleClick = () => {
     if (active || matched.includes(cardId)) return; // card is already flipped or matched
@@ -20,12 +21,20 @@ const Card = ({
   };
 
   const renderCardFront = () => {
-    return (
-      <div className='card-front'>
-        <ImageWebp className='character-img' src={imgSrc} alt={name} />
-        {/* <h3 className="character-name">{name}</h3> */}
-      </div>
-    );
+    if (gameMode === 'math') {
+      return (
+        <div className='card-front'>
+          <h3 className='character-name'>{name}</h3>
+        </div>
+      );
+    } else {
+      return (
+        <div className='card-front'>
+          <ImageWebp className='character-img' src={imgSrc} alt={name} />
+          {/* <h3 className="character-name">{name}</h3> */}
+        </div>
+      );
+    }
   };
 
   const renderCardBack = () => {
@@ -52,11 +61,12 @@ Card.propTypes = {
   matched: array,
   flipped: array,
   setFlipped: func,
-  name: string,
+  name: oneOfType([string, number]),
   imgSrc: string,
   cardId: number,
   cardKey: number,
   active: bool,
+  gameMode: string,
 };
 
 export default Card;

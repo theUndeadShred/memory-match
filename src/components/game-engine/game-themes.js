@@ -162,3 +162,39 @@ export const mouse = [
     img: '/mouse/mouse6.png',
   },
 ];
+
+const MATH_VALUE_MAX = 10;
+
+// generate a list of 6 math problems with random numbers
+// that are unique and have a unique answer
+export const generateMathProblems = () => {
+  const problems = [];
+  const answers = [];
+  let i = 0;
+  while (i < 6) {
+    let a = Math.floor(Math.random() * MATH_VALUE_MAX);
+    let b = Math.floor(Math.random() * MATH_VALUE_MAX);
+    const operator = Math.random() > 0.5 ? '+' : '-';
+
+    if (operator === '-' && a < b) {
+      // swap a and b to ensure the answer is not negative
+      [a, b] = [b, a];
+    }
+
+    const problem = `${a} ${operator} ${b}`;
+    const answer = operator === '+' ? a + b : a - b;
+    if (!answers.includes(answer)) {
+      answers.push(answer);
+      problems.push({
+        id: answer,
+        name: problem,
+      });
+      problems.push({
+        id: answer,
+        name: answer,
+      });
+      i++;
+    }
+  }
+  return problems;
+};
