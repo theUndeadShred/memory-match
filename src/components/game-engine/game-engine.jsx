@@ -104,10 +104,15 @@ const GameEngine = () => {
     } else {
       cardData = Themes[gameState.theme];
     }
-    // duplicate the elements in the cardData, then
-    // shuffle the array using the Fisher-Yates algorithm
-    const duplicatedArray = cardData.concat(cardData);
-    return duplicatedArray.sort(() => Math.random() - 0.5);
+
+    if (gameState.gameMode === 'math') {
+      return cardData.sort(() => Math.random() - 0.5);
+    } else {
+      // duplicate the elements in the cardData, then
+      // shuffle the array using the Fisher-Yates algorithm
+      const duplicatedArray = cardData.concat(cardData);
+      return duplicatedArray.sort(() => Math.random() - 0.5);
+    }
   }, [toggleReset, gameState.theme, gameState.gameMode]);
 
   const handleFlipped = (flippedCard) => {

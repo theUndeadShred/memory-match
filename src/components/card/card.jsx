@@ -1,4 +1,4 @@
-import { array, bool, func, number, string } from 'prop-types';
+import { array, bool, func, number, string, oneOfType } from 'prop-types';
 import ImageWebp from '../image-webp';
 
 const Card = ({
@@ -27,13 +27,14 @@ const Card = ({
           <h3 className='character-name'>{name}</h3>
         </div>
       );
+    } else {
+      return (
+        <div className='card-front'>
+          <ImageWebp className='character-img' src={imgSrc} alt={name} />
+          {/* <h3 className="character-name">{name}</h3> */}
+        </div>
+      );
     }
-    return (
-      <div className='card-front'>
-        <ImageWebp className='character-img' src={imgSrc} alt={name} />
-        {/* <h3 className="character-name">{name}</h3> */}
-      </div>
-    );
   };
 
   const renderCardBack = () => {
@@ -60,7 +61,7 @@ Card.propTypes = {
   matched: array,
   flipped: array,
   setFlipped: func,
-  name: string,
+  name: oneOfType([string, number]),
   imgSrc: string,
   cardId: number,
   cardKey: number,
