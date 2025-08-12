@@ -172,9 +172,15 @@ export const generateMathProblems = () => {
   const answers = [];
   let i = 0;
   while (i < 6) {
-    const a = Math.floor(Math.random() * MATH_VALUE_MAX);
-    const b = Math.floor(Math.random() * MATH_VALUE_MAX);
+    let a = Math.floor(Math.random() * MATH_VALUE_MAX);
+    let b = Math.floor(Math.random() * MATH_VALUE_MAX);
     const operator = Math.random() > 0.5 ? '+' : '-';
+
+    if (operator === '-' && a < b) {
+      // swap a and b to ensure the answer is not negative
+      [a, b] = [b, a];
+    }
+
     const problem = `${a} ${operator} ${b}`;
     const answer = operator === '+' ? a + b : a - b;
     if (!answers.includes(answer)) {
@@ -182,6 +188,10 @@ export const generateMathProblems = () => {
       problems.push({
         id: answer,
         name: problem,
+      });
+      problems.push({
+        id: answer,
+        name: answer,
       });
       i++;
     }
