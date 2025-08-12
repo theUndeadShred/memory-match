@@ -22,8 +22,8 @@ const StyledGrid = styled.section`
   }
 
   @media (max-width: 500px) {
-    gap: 0.25em;
-    padding: 0.25em;
+    gap: 0.5em;
+    padding: 0.5em;
   }
 `;
 
