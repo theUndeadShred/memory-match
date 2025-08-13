@@ -25,6 +25,7 @@ export const GameStateProvider = ({ children }) => {
   const [gameState, setGameState] = useState({
     gameMode: 'characters',
     theme: 'mario',
+    isTimed: false,
   });
 
   return (
