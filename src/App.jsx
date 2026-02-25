@@ -42,6 +42,12 @@ const StartScreen = ({ setShouldStartGame }) => {
         }}
       />
       <StyledButton
+        $isTimed={gameState.isTimed}
+        onClick={() => setGameState({ ...gameState, isTimed: !gameState.isTimed })}
+      >
+        Timed Mode
+      </StyledButton>
+      <StyledButton
         disabled={
           !localUser || (!gameState.theme && gameState.gameMode !== 'math')
         }
