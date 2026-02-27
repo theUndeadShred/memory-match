@@ -70,10 +70,18 @@ const StyledGameWin = styled.div`
   }
 `;
 
+const StyledTimer = styled.div`
+  font-size: 2em;
+  font-weight: bold;
+  color: #646cff;
+  padding: 0.5em;
+`;
+
 const GameEngine = () => {
   const { user } = useContext(UserContext);
   const { gameState } = useContext(GameStateContext);
 
+  const [time, setTime] = useState(0);
   const [flipped, setFlipped] = useState([]);
   const [matched, setMatched] = useState([]);
   const [toggleReset, setToggleReset] = useState(false);
@@ -115,6 +123,19 @@ const GameEngine = () => {
     }
   }, [toggleReset, gameState.theme, gameState.gameMode]);
 
+  useEffect(() => {
+    let timer;
+    if (
+      gameState.isTimed &&
+      matched.length !== shuffledArray.length / 2
+    ) {
+      timer = setInterval(() => {
+        setTime((prevTime) => prevTime + 1);
+      }, 1000);
+    }
+    return () => clearInterval(timer);
+  }, [gameState.isTimed, matched.length, shuffledArray.length]);
+
   const handleFlipped = (flippedCard) => {
     setFlipped([...flipped, { id: flippedCard.id, key: flippedCard.key }]);
   };
@@ -123,6 +144,7 @@ const GameEngine = () => {
     setFlipped([]);
     setMatched([]);
     setToggleReset(!toggleReset);
+    setTime(0);
   };
 
   // this function will check if the card is active
@@ -160,10 +182,20 @@ const GameEngine = () => {
     });
   };
 
+  const formatTime = (time) => {
+    const minutes = Math.floor(time / 60)
+      .toString()
+      .padStart(2, '0');
+    const seconds = (time % 60).toString().padStart(2, '0');
+    return `${minutes}:${seconds}`;
+  };
+
   return (
     <>
+      {gameState.isTimed && <StyledTimer data-testid="timer">{formatTime(time)}</StyledTimer>}
       {matched.length === shuffledArray.length / 2 && (
         <StyledGameWin>
+          {gameState.isTimed && <h2>{formatTime(time)}</h2>}
           <h1>You Win, {user}!</h1>
           <ThemeSelect isSmall />
           <StyledButton onClick={handleReset}>Play again</StyledButton>

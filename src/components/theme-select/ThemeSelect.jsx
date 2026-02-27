@@ -20,6 +20,10 @@ const ThemeSelect = ({ isSmall }) => {
     setGameState({ ...gameState, theme: value });
   };
 
+  const handleTimedModeChange = () => {
+    setGameState({ ...gameState, isTimed: !gameState.isTimed });
+  };
+
   return (
     <>
       <label htmlFor='game-mode-select'>Game Mode</label>
@@ -55,12 +59,11 @@ const ThemeSelect = ({ isSmall }) => {
         <input
           type="checkbox"
           id="timed-mode"
-          checked={gameState.timed || false}
-          disabled={true} // Disabled for now as per requirements
-          onChange={() => {}} // No-op for now
+          checked={gameState.isTimed || false}
+          onChange={handleTimedModeChange}
         />
         <label htmlFor="timed-mode" style={{ marginLeft: '0.5em' }}>
-          Timed Mode (Coming Soon)
+          Timed Mode
         </label>
       </div>
     </>
