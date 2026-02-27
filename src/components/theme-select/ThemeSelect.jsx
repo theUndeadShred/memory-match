@@ -6,41 +6,63 @@ import { StyledSelect } from '../../styles/layout-styles';
 const ThemeSelect = ({ isSmall }) => {
   const { gameState, setGameState } = useContext(GameStateContext);
 
+  const handleGameModeChange = (e) => {
+    const { value } = e.target;
+    setGameState({
+      ...gameState,
+      gameMode: value,
+      theme: value === 'math' ? null : (gameState.theme || 'mario'),
+    });
+  };
+
   const handleThemeChange = (e) => {
     const { value } = e.target;
-    if (value === 'math') {
-      setGameState({ ...gameState, gameMode: 'math', theme: null });
-    } else {
-      setGameState({ ...gameState, gameMode: 'characters', theme: value });
-    }
+    setGameState({ ...gameState, theme: value });
   };
 
   return (
     <>
-      <label htmlFor='theme-select'>
-        {gameState.gameMode === 'math' ? 'Game Mode' : 'Theme'}
-      </label>
+      <label htmlFor='game-mode-select'>Game Mode</label>
       <StyledSelect
-        id='theme-select'
+        id='game-mode-select'
         isSmall={isSmall}
-        type='select'
-        placeholder='Select a theme'
-        value={gameState.gameMode === 'math' ? 'math' : gameState.theme}
-        onChange={handleThemeChange}
+        value={gameState.gameMode}
+        onChange={handleGameModeChange}
       >
-        <option value=''>Select a theme</option>
-        <optgroup label='Game Modes'>
-          <option value='math'>Math</option>
-        </optgroup>
-        <optgroup label='Themes'>
-          <option value='mario'>Mario</option>
-          <option value='zelda'>Zelda</option>
-          <option value='disney'>Disney</option>
-          <option value='frogs'>Frogs</option>
-          <option value='mouse'>Mouse</option>
-          {/* Add more themes as needed */}
-        </optgroup>
+        <option value='characters'>Characters</option>
+        <option value='math'>Math</option>
       </StyledSelect>
+
+      {gameState.gameMode === 'characters' && (
+        <>
+          <label htmlFor='theme-select'>Theme</label>
+          <StyledSelect
+            id='theme-select'
+            isSmall={isSmall}
+            value={gameState.theme || ''}
+            onChange={handleThemeChange}
+          >
+            <option value='mario'>Mario</option>
+            <option value='zelda'>Zelda</option>
+            <option value='disney'>Disney</option>
+            <option value='frogs'>Frogs</option>
+            <option value='mouse'>Mouse</option>
+          </StyledSelect>
+        </>
+      )}
+
+      <div>
+        <input
+          type="checkbox"
+          id="timed-mode"
+          checked={gameState.timed || false}
+          disabled={true} // Disabled for now as per requirements
+          onChange={() => {}} // No-op for now
+        />
+        <label htmlFor="timed-mode" style={{ marginLeft: '0.5em' }}>
+          Timed Mode (Coming Soon)
+        </label>
+      </div>
     </>
   );
 };

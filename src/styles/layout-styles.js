@@ -18,6 +18,7 @@ const StyledButton = styled.button`
   background-color: #f0f0f0;
   color: #646cff;
   cursor: pointer;
+  margin-bottom: 0.5em;
 `;
 
 const StyledInput = styled.input`

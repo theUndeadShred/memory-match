@@ -36,11 +36,7 @@ const StartScreen = ({ setShouldStartGame }) => {
         onChange={handleSetUser}
         value={localUser}
       />
-      <ThemeSelect
-        onChange={(e) => {
-          setGameState({ ...gameState, theme: e.target.value });
-        }}
-      />
+      <ThemeSelect />
       <StyledButton
         disabled={
           !localUser || (!gameState.theme && gameState.gameMode !== 'math')
