@@ -19,7 +19,7 @@ import {
 const StartScreen = ({ setShouldStartGame }) => {
   const [localUser, setLocalUser] = useState('');
 
-  const { gameState, setGameState } = useContext(GameStateContext);
+  const { gameState } = useContext(GameStateContext);
   const { setUser } = useContext(UserContext);
 
   const handleSetUser = (e) => {
