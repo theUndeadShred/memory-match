@@ -5,7 +5,9 @@ const StyledStartScreen = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
+  padding: 1em;
+  box-sizing: border-box;
   gap: 1em;
 `;
 

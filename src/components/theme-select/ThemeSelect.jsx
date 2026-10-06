@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { bool } from 'prop-types';
 import { GameStateContext } from '../../contexts';
 import { StyledSelect, StyledOptionsForm } from '../../styles/layout-styles';
+import ThemeCarousel from './ThemeCarousel';
 
 const ThemeSelect = ({ isSmall }) => {
   const { gameState, setGameState } = useContext(GameStateContext);
@@ -15,9 +16,9 @@ const ThemeSelect = ({ isSmall }) => {
     });
   };
 
-  const handleThemeChange = (e) => {
-    const { value } = e.target;
-    setGameState({ ...gameState, theme: value });
+  const handleThemeChange = (newTheme) => {
+    const value = typeof newTheme === 'string' ? newTheme : newTheme?.target?.value;
+    setGameState((prev) => ({ ...prev, theme: value }));
   };
 
   const handleTimedModeChange = () => {
@@ -39,20 +40,13 @@ const ThemeSelect = ({ isSmall }) => {
 
       {gameState.gameMode === 'characters' && (
         <>
-          <label htmlFor='theme-select'>Theme</label>
-          <StyledSelect
-            id='theme-select'
+          <label id='theme-carousel-label'>Theme</label>
+          <ThemeCarousel
+            selectedTheme={gameState.theme || 'mario'}
+            onSelectTheme={handleThemeChange}
             isSmall={isSmall}
-            value={gameState.theme || ''}
-            onChange={handleThemeChange}
-          >
-            <option value='mario'>Mario</option>
-            <option value='zelda'>Zelda</option>
-            <option value='disney'>Disney</option>
-            <option value='frogs'>Frogs</option>
-            <option value='mouse'>Mouse</option>
-            <option value='bluey'>Bluey</option>
-          </StyledSelect>
+            ariaLabelledBy='theme-carousel-label'
+          />
         </>
       )}
 
