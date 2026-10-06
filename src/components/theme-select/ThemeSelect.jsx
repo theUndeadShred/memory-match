@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { bool } from 'prop-types';
 import { GameStateContext } from '../../contexts';
-import { StyledSelect } from '../../styles/layout-styles';
+import { StyledSelect, StyledOptionsForm } from '../../styles/layout-styles';
 
 const ThemeSelect = ({ isSmall }) => {
   const { gameState, setGameState } = useContext(GameStateContext);
@@ -25,7 +25,7 @@ const ThemeSelect = ({ isSmall }) => {
   };
 
   return (
-    <>
+    <StyledOptionsForm isSmall={isSmall} onSubmit={(e) => e.preventDefault()}>
       <label htmlFor='game-mode-select'>Game Mode</label>
       <StyledSelect
         id='game-mode-select'
@@ -51,6 +51,7 @@ const ThemeSelect = ({ isSmall }) => {
             <option value='disney'>Disney</option>
             <option value='frogs'>Frogs</option>
             <option value='mouse'>Mouse</option>
+            <option value='bluey'>Bluey</option>
           </StyledSelect>
         </>
       )}
@@ -66,7 +67,7 @@ const ThemeSelect = ({ isSmall }) => {
           Timed Mode
         </label>
       </div>
-    </>
+    </StyledOptionsForm>
   );
 };
 

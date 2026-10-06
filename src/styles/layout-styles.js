@@ -42,4 +42,13 @@ const StyledSelect = styled.select`
   cursor: pointer;
 `;
 
-export { StyledStartScreen, StyledButton, StyledInput, StyledSelect };
+const StyledOptionsForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5em;
+  font-size: ${(props) => (props.isSmall ? '0.5em' : '1em')};
+`;
+
+export { StyledStartScreen, StyledButton, StyledInput, StyledSelect, StyledOptionsForm };
+

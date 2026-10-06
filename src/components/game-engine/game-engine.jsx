@@ -68,6 +68,10 @@ const StyledGameWin = styled.div`
   @media (max-width: 1024px) {
     font-size: 2em;
   }
+
+  form {
+    font-size: 0.5em;
+  }
 `;
 
 const StyledTimer = styled.div`

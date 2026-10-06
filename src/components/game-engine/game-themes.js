@@ -162,6 +162,46 @@ export const mouse = [
     img: '/mouse/mouse6.png',
   },
 ];
+export const bluey = [
+  {
+    id: 1,
+    name: 'Bandit',
+    key: 'Bandit',
+    img: '/bluey/Bandit.png',
+  },
+  {
+    id: 2,
+    name: 'Bingo',
+    key: 'Bingo',
+    img: '/bluey/Bingo.png',
+  },
+  {
+    id: 3,
+    name: 'Bluey',
+    key: 'Bluey',
+    img: '/bluey/Bluey.png',
+  },
+  {
+    id: 4,
+    name: 'Chilli',
+    key: 'Chilli',
+    img: '/bluey/Chilli.png',
+  },
+  {
+    id: 5,
+    name: 'Muffin',
+    key: 'Muffin',
+    img: '/bluey/Muffin.png',
+  },
+  {
+    id: 6,
+    name: 'Socks',
+    key: 'Socks',
+    img: '/bluey/Socks.png',
+  },
+];
+
+export const Bluey = bluey;
 
 const MATH_VALUE_MAX = 10;
 
@@ -198,3 +238,4 @@ export const generateMathProblems = () => {
   }
   return problems;
 };
+
