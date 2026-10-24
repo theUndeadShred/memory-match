@@ -10,6 +10,7 @@ const THEME_DEFINITIONS = [
   { id: 'frogs', name: 'Frogs' },
   { id: 'mouse', name: 'Mouse' },
   { id: 'bluey', name: 'Bluey' },
+  { id: 'squishmallows', name: 'Squishmallows' },
 ];
 
 const THEMES = THEME_DEFINITIONS.map((def) => ({

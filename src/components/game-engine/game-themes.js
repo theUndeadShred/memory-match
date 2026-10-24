@@ -162,6 +162,7 @@ export const mouse = [
     img: '/mouse/mouse6.png',
   },
 ];
+
 export const bluey = [
   {
     id: 1,
@@ -198,6 +199,45 @@ export const bluey = [
     name: 'Socks',
     key: 'Socks',
     img: '/bluey/Socks.png',
+  },
+];
+
+export const squishmallows = [
+  {
+    id: 1,
+    name: 'Brina',
+    key: 'brina',
+    img: '/squishmallows/Brina.jpg',
+  },
+  {
+    id: 2,
+    name: 'Doxl',
+    key: 'doxl',
+    img: '/squishmallows/Doxl.webp',
+  },
+  {
+    id: 3,
+    name: 'Lola',
+    key: 'lola',
+    img: '/squishmallows/Lola.webp',
+  },
+  {
+    id: 4,
+    name: 'Margaux',
+    key: 'margaux',
+    img: '/squishmallows/Margaux.webp',
+  },
+  {
+    id: 5,
+    name: 'Ruby',
+    key: 'ruby',
+    img: '/squishmallows/Ruby.jpg',
+  },
+  {
+    id: 6,
+    name: 'Sarah',
+    key: 'sarah',
+    img: '/squishmallows/Sarah.webp',
   },
 ];
 
